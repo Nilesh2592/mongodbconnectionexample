@@ -11,7 +11,7 @@ ADD package.json /home/mean/package.json
 RUN npm install
 
 # Manually trigger bower.
-ADD .bowerrc /home/mean/.bowerrc  
+#ADD .bowerrc /home/mean/.bowerrc  
 ADD bower.json /home/mean/bower.json  
 RUN bower install --config.interactive=false --allow-root
 
