@@ -1,27 +1,16 @@
-FROM node
+FROM node:argon
 
-WORKDIR /home/mean
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
-# Install Mean.JS Prerequisites
-RUN npm install -g grunt-cli  
-RUN npm install -g bower
-
-# Install Mean.JS packages
-ADD package.json /home/mean/package.json  
+# Install app dependencies
+COPY package.json /usr/src/app/
 RUN npm install
 
-# Manually trigger bower.
-#ADD .bowerrc /home/mean/.bowerrc  
-ADD bower.json /home/mean/bower.json  
-RUN bower install --config.interactive=false --allow-root
+# Bundle app source
+COPY . /usr/src/app
 
-# Make everything available for start
-ADD . /home/mean
+EXPOSE 3000
 
-# currently only works for development
-ENV NODE_ENV development
-
-# Port 3000 for server
-# Port 35729 for livereload
-EXPOSE 3000 35729
-CMD ["grunt"]  
+CMD [ "npm", "start" ]
