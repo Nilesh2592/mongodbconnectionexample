@@ -3,7 +3,7 @@ var router = express.Router();
 
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://0.0.0.0:27017/node_test');
+mongoose.connect('mongodb://e17a1ce70ab7/node_test');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
